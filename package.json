@@ -1,0 +1,36 @@
+{
+  "name": "abaqus-syntax-highlighting",
+  "displayName": "Abaqus Syntax Highlighting",
+  "description": "Abaqus Syntax Highlighting",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "abaqus",
+        "aliases": [
+          "Abaqus",
+          "abaqus"
+        ],
+        "extensions": [
+          ".inp",
+          ".inc",
+          "incl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "abaqus",
+        "scopeName": "source.abaqus",
+        "path": "./syntaxes/abaqus.tmLanguage.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Abaqus",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#parametric"
+		},
+		{
+			"include": "#parameters"
+		},
+		{
+			"include": "#parameterValue"
+		},
+		{
+			"include": "#parameterValue2"
+		},
+		{
+			"include": "#parameterValue3"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"comment": "Comment line",
+					"begin": "^[*][*]",
+					"end": "(?=\\n)",
+					"name": "comment.line.abaqus"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"comment": "Numerical constants",
+					"name": "string.abaqus",
+					"match": "(?ix)[\\+\\-]?\\b(\\d+\\.?\\d*|\\.\\d+)(d[\\+\\-]?\\d+|e[\\+\\-]?\\d+(_\\w+)?)?(?![a-z_])"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"comment": "Abaqus keywords",
+					"name": "keyword.control.abaqus",
+					"begin": "^[*]",
+					"end": "(?=\\,|\\n)"
+				}
+			]
+		},
+		"parametric": {
+			"patterns": [
+				{
+					"comment": "Parametric variables",
+					"name": "entity.name.function.abaqus",
+					"begin": "(?=<)",
+					"end": "(>)"
+				}
+			]
+		},
+		"parameters": {
+			"patterns": [
+				{
+					"comment": "Parametric2 variables",
+					"name": "constant.language.abaqus",
+					"match": "(?<=,)[^,]+(?==)"
+				}
+			]
+		},
+		"parameterValue": {
+			"patterns": [
+				{
+					"comment": "ParameterValue variables",
+					"name": "variable.parameter.abaqus",
+					"match": "(?<==)[^,*\\n]+(?<=)"
+				}
+			]
+		},
+		"parameterValue2": {
+			"patterns": [
+				{
+					"comment": "ParameterValue2 variables",
+					"name": "variable.parameter.abaqus",
+					"match": "(?<=,)[^,=*0-9\n]+(?=,)"
+				}
+			]
+		},
+		"parameterValue3": {
+			"patterns": [
+				{
+					"comment": "ParameterValue2 variables",
+					"name": "variable.parameter.abaqus",
+					"match": "(?<=[^0-9],)[^,=*0-9\n]+(?=\n)"
+				}
+			]
+		}
+	},
+	"scopeName": "source.abaqus"
+}
