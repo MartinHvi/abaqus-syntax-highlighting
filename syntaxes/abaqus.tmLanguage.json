@@ -18,7 +18,7 @@
 			"include": "#parametric"
 		},
 		{
-			"include": "#constants"
+			"include": "#numerical"
 		},
 		{
 			"include": "#variableValue"
@@ -48,10 +48,10 @@
 				}
 			]
 		},
-		"constants": {
+		"numerical": {
 			"patterns": [
 				{
-					"comment": "Numerical constants",
+					"comment": "Numerical values",
 					"name": "string.abaqus",
 					"match": "([+-]?(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*))(?:[eE]([+-]?\\d+))?"
 				}
