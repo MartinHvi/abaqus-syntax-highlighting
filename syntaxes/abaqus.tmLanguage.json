@@ -3,6 +3,9 @@
 	"name": "Abaqus",
 	"patterns": [
 		{
+			"include": "#headertext"
+		},
+		{
 			"include": "#comments"
 		},
 		{
@@ -15,10 +18,10 @@
 			"include": "#parametric"
 		},
 		{
-			"include": "#variableValue"
+			"include": "#constants"
 		},
 		{
-			"include": "#constants"
+			"include": "#variableValue"
 		},
 		{
 			"include": "#otherVariableValue"
@@ -32,6 +35,16 @@
 					"begin": "^[*][*]",
 					"end": "(?=\\n)",
 					"name": "comment.line.abaqus"
+				}
+			]
+		},
+		"headertext": {
+			"patterns": [
+				{
+					"comment": "Header text",
+					"name": "entity.name.function.abaqus",
+					"begin": "(?<=HEADING)",
+					"end": "(?=\\*)"
 				}
 			]
 		},
