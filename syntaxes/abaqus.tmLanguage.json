@@ -43,7 +43,7 @@
 				{
 					"comment": "Numerical constants",
 					"name": "string.abaqus",
-					"match": "(?ix)[\\+\\-]?\\b(\\d+\\.?\\d*|\\.\\d+)(d[\\+\\-]?\\d+|e[\\+\\-]?\\d+(_\\w+)?)?(?![a-z_])"
+					"match": "\b([0-9]|[\\d.E])+\b"
 				}
 			]
 		},
