@@ -15,10 +15,13 @@
 			"include": "#parametric"
 		},
 		{
-			"include": "#parameterValue"
+			"include": "#variableValue"
 		},
 		{
 			"include": "#constants"
+		},
+		{
+			"include": "#otherVariableValue"
 		}
 	],
 	"repository": {
@@ -70,30 +73,21 @@
 				}
 			]
 		},
-		"parameterValue": {
+		"variableValue": {
 			"patterns": [
 				{
-					"comment": "ParameterValue variables",
+					"comment": "Variable values",
 					"name": "variable.parameter.abaqus",
 					"match": "(?<==)[^,*\\n]+(?<=)"
 				}
 			]
 		},
-		"parameterValue2": {
+		"otherVariableValue": {
 			"patterns": [
 				{
-					"comment": "ParameterValue2 variables",
+					"comment": "Other variable values",
 					"name": "variable.parameter.abaqus",
-					"match": "(?<=,)[^,=*0-9\n]+(?=,)"
-				}
-			]
-		},
-		"parameterValue3": {
-			"patterns": [
-				{
-					"comment": "ParameterValue2 variables",
-					"name": "variable.parameter.abaqus",
-					"match": "(?<=[^0-9],)[^,=*0-9\n]+(?=\n)"
+					"match": "[A-Za-z_-]+(?=,|\\s)"
 				}
 			]
 		}
