@@ -3,6 +3,7 @@
 # Description
 A tool developed for Visual Studio Code to highlight Abaqus .inp .inc .incl syntax.
 To be added in the future:
+ - [x] Syntax Highlighting
  - [ ] More robust regex
  - [ ] Autocomplete
 # How to Use the Project
