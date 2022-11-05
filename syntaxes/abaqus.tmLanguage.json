@@ -6,25 +6,19 @@
 			"include": "#comments"
 		},
 		{
-			"include": "#constants"
-		},
-		{
 			"include": "#keywords"
-		},
-		{
-			"include": "#parametric"
 		},
 		{
 			"include": "#parameters"
 		},
 		{
+			"include": "#parametric"
+		},
+		{
 			"include": "#parameterValue"
 		},
 		{
-			"include": "#parameterValue2"
-		},
-		{
-			"include": "#parameterValue3"
+			"include": "#constants"
 		}
 	],
 	"repository": {
@@ -43,7 +37,7 @@
 				{
 					"comment": "Numerical constants",
 					"name": "string.abaqus",
-					"match": "\b([0-9]|[\\d.E])+\b"
+					"match": "([+-]?(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*))(?:[eE]([+-]?\\d+))?"
 				}
 			]
 		},
