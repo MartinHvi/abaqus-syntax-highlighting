@@ -1,5 +1,6 @@
 # Abaqus Syntax Highlighting Visual Studio Code Extension
 ![Syntax Highlighting Image](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/SyntaxHighlighting.gif)
+Dark+
 # Description
 A tool developed for Visual Studio Code to highlight Abaqus .inp .inc .incl syntax.
 To be added in the future:
