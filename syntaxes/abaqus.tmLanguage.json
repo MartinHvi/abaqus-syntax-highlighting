@@ -15,6 +15,9 @@
 			"include": "#variables"
 		},
 		{
+			"include": "#variablesSpaces"
+		},
+		{
 			"include": "#parametric"
 		},
 		{
@@ -25,6 +28,9 @@
 		},
 		{
 			"include": "#otherVariableValue"
+		},
+		{
+			"include": "#operator"
 		}
 	],
 	"repository": {
@@ -42,7 +48,7 @@
 			"patterns": [
 				{
 					"comment": "Header text",
-					"name": "entity.name.function.abaqus",
+					"name": "string.quoted.docstring.multi.abaqus",
 					"begin": "(?<=HEADING)",
 					"end": "(?=\\*)"
 				}
@@ -52,7 +58,7 @@
 			"patterns": [
 				{
 					"comment": "Numerical values",
-					"name": "string.abaqus",
+					"name": "constant.numeric.abaqus",
 					"match": "([+-]?(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*))(?:[eE]([+-]?\\d+))?"
 				}
 			]
@@ -81,8 +87,17 @@
 			"patterns": [
 				{
 					"comment": "Variables",
-					"name": "constant.language.abaqus",
+					"name": "entity.name.variable.abaqus",
 					"match": "\\w+(?==)"
+				}
+			]
+		},
+		"variablesSpaces": {
+			"patterns": [
+				{
+					"comment": "Space separate variables",
+					"name": "entity.name.variable.abaqus",
+					"match": "(?<=,|\\s)[a-zA-Z]+\\s+[a-zA-Z]+(?=\\=)"
 				}
 			]
 		},
@@ -90,7 +105,7 @@
 			"patterns": [
 				{
 					"comment": "Variable values",
-					"name": "variable.parameter.abaqus",
+					"name": "constant.language.abaqus",
 					"match": "(?<==)[^,*\\n]+(?<=)"
 				}
 			]
@@ -99,8 +114,17 @@
 			"patterns": [
 				{
 					"comment": "Other variable values",
-					"name": "variable.parameter.abaqus",
+					"name": "constant.language.abaqus",
 					"match": "(?<=|\\s,)[A-Za-z0-9-_]+(?=,|\\s)"
+				}
+			]
+		},
+		"operator": {
+			"patterns": [
+				{
+					"comment": "Operators such as =",
+					"name": "keyword.operator.abaqus",
+					"match": "(\\=)"
 				}
 			]
 		}
