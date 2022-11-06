@@ -14,3 +14,6 @@ OR
 
 Download all the project files to a separate folder with a recognizable name such as "abaqus-syntax-highlighting" and put the folder in %USERPROFILE%\\.vscode\extensions.
 Restart VSCode and open any Abaqus input file.
+
+# TODO
+* REGEX: ", WORDONE WORDTWO="
