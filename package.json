@@ -3,9 +3,9 @@
   "displayName": "Abaqus Syntax Highlighting",
   "description": "Abaqus Syntax Highlighting",
   "publisher": "MartinHviid",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "engines": {
-    "vscode": "^1.73.0"
+    "vscode": "^1.53.0"
   },
   "author": {
     "name": "Martin Hviid"
