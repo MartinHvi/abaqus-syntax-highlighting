@@ -3,7 +3,7 @@
 
 Dark+
 # Description
-A tool developed for Visual Studio Code to highlight Abaqus .inp .inc .incl syntax.
+A tool developed for Visual Studio Code to highlight Abaqus .inp .inc .incl syntax. Works with VS Code theme extensions.
 
 # How to Use the Project
 Download all the project files to a separate folder with a recognizable name such as "abaqus-syntax-highlighting" and put the folder in %USERPROFILE%\\.vscode\extensions.
