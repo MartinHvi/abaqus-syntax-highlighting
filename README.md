@@ -1,5 +1,5 @@
 # Abaqus Syntax Highlighting VSCode
-![DEMO](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/SyntaxHighlighting.gif?raw=true)
+![DEMO](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/DEMO.gif?raw=true)
 
 The Abaqus Syntax Highlighting extension will make your Abaqus files easier to read.
 
