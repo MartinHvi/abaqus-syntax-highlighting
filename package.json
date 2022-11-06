@@ -2,10 +2,15 @@
   "name": "abaqus-syntax-highlighting",
   "displayName": "Abaqus Syntax Highlighting",
   "description": "Abaqus Syntax Highlighting",
+  "publisher": "Martin Hviid",
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.73.0"
   },
+  "author": {
+    "name": "Martin Hviid"
+  },
+  "license": "MIT",
   "categories": [
     "Programming Languages"
   ],
@@ -32,5 +37,13 @@
         "path": "./syntaxes/abaqus.tmLanguage.json"
       }
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MartinHvi/abaqus-syntax-highlighting"
+  },
+  "bugs": {
+    "url": "https://github.com/MartinHvi/abaqus-syntax-highlighting/issues"
+  },
+  "homepage": "https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/README.md"
 }
