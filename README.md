@@ -1,10 +1,12 @@
-# Abaqus Syntax Highlighting Visual Studio Code Extension
+# Abaqus Syntax Highlighting VSCode
 ![Syntax Highlighting Image](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/SyntaxHighlighting.gif)
 
-Dark+
-# Description
-A tool developed for Visual Studio Code to highlight Abaqus .inp .inc .incl syntax. Works with VS Code theme extensions.
+The Abaqus Syntax Highlighting extension will make your Abaqus files easier to read.
 
-# How to Use the Project
+Supported file extensions:
+* .inp
+* .inc
+* .incl
+# How to install
 Download all the project files to a separate folder with a recognizable name such as "abaqus-syntax-highlighting" and put the folder in %USERPROFILE%\\.vscode\extensions.
-Restart Visual Studio Code and open any Abaqus input file.
+Restart VSCode and open any Abaqus input file.
