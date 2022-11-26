@@ -16,7 +16,9 @@ Create a .json file with the keys in lowercase and values as a markdown string. 
 	"example": "# Example hover info \n\n This is an **example** 🧐"
 }
 ```
+
 ![DEMO2](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/hoverDemo.PNG?raw=true)
+
 There are two ways to add the path for the json file.
 
 **Alternative 1.** Follow the steps shown below then restart VSCode.
