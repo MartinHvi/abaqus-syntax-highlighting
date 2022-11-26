@@ -16,10 +16,13 @@ Create a .json file with the keys in lowercase and values as a markdown string. 
 	"example": "# Example hover info \n\n This is an **example** 🧐"
 }
 ```
+![DEMO](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/hoverExample.PNG)
 There are two ways to add the path for the json file.
-1. Follow the steps shown below then restart VSCode.
+
+**Alternative 1.** Follow the steps shown below then restart VSCode.
 ![DEMO](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/demoHover.gif?raw=true)
-2. CTRL+Shift+P and select "Preferences: Open User Settings (JSON)". Add the line below with the path to your json file then restart VSCode.
+
+**Alternative 2.** CTRL+Shift+P and select "Preferences: Open User Settings (JSON)". Add the line below with the path to your json file then restart VSCode.
 ```json
 {
 	"abaqusSyntaxHighlighting.customHover.pathJSON": "C:\\Users\\Username\\Desktop\\customhover.json"
