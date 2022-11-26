@@ -1,11 +1,11 @@
 {
   "name": "abaqus-syntax-highlighting",
   "displayName": "Abaqus Syntax Highlighting",
-  "description": "Abaqus Syntax Highlighting",
+  "description": "Custom hover information, syntax highlighting for input files",
   "publisher": "MartinHviid",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "engines": {
-    "vscode": "^1.53.0"
+    "vscode": "^1.32.0"
   },
   "author": {
     "name": "Martin Hviid"
@@ -14,7 +14,20 @@
   "categories": [
     "Programming Languages"
   ],
+  "activationEvents": [
+    "*"
+  ],
   "contributes": {
+    "configuration": {
+      "title": "Abaqus Syntax Highlighting",
+      "properties": {
+        "abaqusSyntaxHighlighting.customHover.pathJSON": {
+          "type": "string",
+          "default": "",
+          "description": "Path to .json file containing custom hover information. Keys should be all lowercase, values are markdown strings."
+        }
+      }
+    },
     "languages": [
       {
         "id": "abaqus",
@@ -25,7 +38,7 @@
         "extensions": [
           ".inp",
           ".inc",
-          "incl"
+          ".incl"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -45,5 +58,20 @@
   "bugs": {
     "url": "https://github.com/MartinHvi/abaqus-syntax-highlighting/issues"
   },
-  "homepage": "https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/README.md"
+  "homepage": "https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/README.md",
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/vscode": "^1.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "typescript": "^4.8.4"
+  }
 }
