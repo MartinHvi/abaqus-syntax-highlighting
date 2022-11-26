@@ -11,6 +11,7 @@
 		"rootDir": "src",
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
+		"noImplicitAny": false
 	},
 	"exclude": [
 		"node_modules",
