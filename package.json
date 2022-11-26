@@ -2,8 +2,9 @@
   "name": "abaqus-syntax-highlighting",
   "displayName": "Abaqus Syntax Highlighting",
   "description": "Custom hover information, syntax highlighting for input files",
+  "icon": "/images/logo128.png",
   "publisher": "MartinHviid",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "engines": {
     "vscode": "^1.32.0"
   },

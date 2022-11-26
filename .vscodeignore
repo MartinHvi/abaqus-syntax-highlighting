@@ -4,3 +4,4 @@
 .gitattributes
 vsc-extension-quickstart.md
 images/**
+!images/logo128.png
