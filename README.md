@@ -1,3 +1,8 @@
+# Features
+- [x] Syntax highlighting
+- [x] Custom hover
+***
+
 # Abaqus Syntax Highlighting VSCode
 ![DEMO1](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/DEMO.gif?raw=true)
 
@@ -7,6 +12,8 @@ Supported file extensions:
 * .inp
 * .inc
 * .incl
+
+***
 
 # How to add custom hover information
 Create a .json file with the keys in lowercase and values as a markdown string. An example of a json file with custom hover information can be seem below for the words "default" and "example".
@@ -19,7 +26,7 @@ Create a .json file with the keys in lowercase and values as a markdown string. 
 
 ![DEMO2](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/hoverDemo.PNG?raw=true)
 
-There are two ways to add the path for the json file.
+## There are two ways to add the path for the json file.
 
 **Alternative 1.** Follow the steps shown below then restart VSCode.
 ![DEMO3](https://github.com/MartinHvi/abaqus-syntax-highlighting/blob/main/images/demoHover.gif?raw=true)
