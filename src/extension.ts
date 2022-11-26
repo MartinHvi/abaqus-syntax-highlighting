@@ -15,19 +15,21 @@ const jsonPath: string = vscode.workspace.getConfiguration().get<string>('abaqus
 const fs = require('fs');
 //const hoverInfo = JSON.parse(fs.readFileSync(jsonPath));
 
-// Function: read json data and catch errors
+// Catch invalid oath to .json
 function readJSON(jsonPath) {
+	let data;
 	try {
-		hoverInfo = JSON.parse(fs.readFileSync(jsonPath));
+		data = JSON.parse(fs.readFileSync(jsonPath));
 	} catch (err) {
-		const hoverInfo = {
-			heading: 'default hover'
+		const data = {
+			heading: 'default hover',
 		};
-		return hoverInfo;
+		return data;
 	}
 	return JSON.parse(fs.readFileSync(jsonPath));
 }
 const hoverInfo = readJSON(jsonPath);
+console.log(jsonPath);
 console.log(hoverInfo);
 
 
