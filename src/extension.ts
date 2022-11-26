@@ -1,20 +1,11 @@
 /*---------------------------------------------------------
- * TODO: 1. Add default hoverinformation path and settings
- * TODO: 2. Add user settings 
- * TODO: 3. Try.. and Catch empty string path or invalid
  * TODO: 4. Refactor and clean up code
- *--------------------------------------------------------*/
-/*---------------------------------------------------------
- * Importing vscode and dynamically loading JSON with 
- * user defined hover information.
  *--------------------------------------------------------*/
 // Imports
 import * as vscode from 'vscode';
-const jsonPath: string = vscode.workspace.getConfiguration().get<string>('abaqus.setting')!;
 // Dynamic Import for custom hover settings
+const jsonPath: string = vscode.workspace.getConfiguration().get<string>('abaqusSyntaxHighlighting.customHover.pathJSON')!;
 const fs = require('fs');
-//const hoverInfo = JSON.parse(fs.readFileSync(jsonPath));
-
 // Catch invalid oath to .json
 function readJSON(jsonPath) {
 	let data;
@@ -22,21 +13,18 @@ function readJSON(jsonPath) {
 		data = JSON.parse(fs.readFileSync(jsonPath));
 	} catch (err) {
 		const data = {
-			heading: 'default hover',
+			default: 'default hover',
 		};
 		return data;
 	}
 	return JSON.parse(fs.readFileSync(jsonPath));
 }
 const hoverInfo = readJSON(jsonPath);
-console.log(jsonPath);
-console.log(hoverInfo);
-
 
 // HOVER VSCODE
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider
-	const hover = vscode.languages.registerHoverProvider('*', {
+	const hoverProvider = vscode.languages.registerHoverProvider('*', {
 		provideHover(document, position) {
 			// Get word range
 			//const wordRange = document.getWordRangeAtPosition(position, /^[*][A-Za-z\s]+/gm);
@@ -51,5 +39,5 @@ export function activate(context: vscode.ExtensionContext) {
 			};
 		}
 	});
-	context.subscriptions.push(hover);
+	context.subscriptions.push(hoverProvider);
 }

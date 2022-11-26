@@ -1,9 +1,9 @@
 {
   "name": "abaqus-syntax-highlighting",
   "displayName": "Abaqus Syntax Highlighting",
-  "description": "Abaqus Syntax Highlighting",
+  "description": "Custom hover information, syntax highlighting for input files",
   "publisher": "MartinHviid",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "engines": {
     "vscode": "^1.32.0"
   },
@@ -19,15 +19,12 @@
   ],
   "contributes": {
     "configuration": {
-      "type": "string",
-      "title": "Abaqus",
+      "title": "Abaqus Syntax Highlighting",
       "properties": {
-        "abaqus.setting": {
-          "type": [
-            "string"
-          ],
+        "abaqusSyntaxHighlighting.customHover.pathJSON": {
+          "type": "string",
           "default": "",
-          "description": "Path to JSON with hover information"
+          "description": "Path to .json file containing custom hover information. Keys should be all lowercase, values are markdown strings."
         }
       }
     },

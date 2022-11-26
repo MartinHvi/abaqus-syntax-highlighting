@@ -1,3 +1,4 @@
 {
-	"*heading": "This is a default hover \n\n This is a **heading** :)"
+	"default": "# Default hover info \n\n This is a **default** hover 🧐",
+	"example": "# Example hover info \n\n This is an **example** 🧐"
 }
