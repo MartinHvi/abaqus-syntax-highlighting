@@ -11,9 +11,26 @@
 // Imports
 import * as vscode from 'vscode';
 const jsonPath: string = vscode.workspace.getConfiguration().get<string>('abaqus.setting')!;
-// Dynamic Imports
+// Dynamic Import for custom hover settings
 const fs = require('fs');
-const hoverInfo = JSON.parse(fs.readFileSync(jsonPath));
+//const hoverInfo = JSON.parse(fs.readFileSync(jsonPath));
+
+// Function: read json data and catch errors
+function readJSON(jsonPath) {
+	try {
+		hoverInfo = JSON.parse(fs.readFileSync(jsonPath));
+	} catch (err) {
+		const hoverInfo = {
+			heading: 'default hover'
+		};
+		return hoverInfo;
+	}
+	return JSON.parse(fs.readFileSync(jsonPath));
+}
+const hoverInfo = readJSON(jsonPath);
+console.log(hoverInfo);
+
+
 // HOVER VSCODE
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider

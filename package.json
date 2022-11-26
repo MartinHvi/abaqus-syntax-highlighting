@@ -26,7 +26,7 @@
           "type": [
             "string"
           ],
-          "default": "G:\\Abaqus_vscode\\abaqus-hover2\\src\\defaultHover.json",
+          "default": "null",
           "description": "Path to JSON with hover information"
         }
       }
