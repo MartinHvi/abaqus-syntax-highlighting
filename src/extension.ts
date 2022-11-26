@@ -24,7 +24,7 @@ const hoverInfo = readJSON(jsonPath);
 // HOVER VSCODE
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider
-	const hoverProvider = vscode.languages.registerHoverProvider('*', {
+	const hoverProvider = vscode.languages.registerHoverProvider('abaqus', {
 		provideHover(document, position) {
 			// Get word range
 			//const wordRange = document.getWordRangeAtPosition(position, /^[*][A-Za-z\s]+/gm);
