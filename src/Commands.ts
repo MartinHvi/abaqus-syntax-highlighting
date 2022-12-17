@@ -133,6 +133,52 @@ export function removeAllComments() {
 	});
 }
 
-/* function removeEmptyComments() {
-	
-} */
+export function removeEmptyComments() {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+	let document = editor.document;
+	let selection = editor.selection;
+
+	let start = new vscode.Position(0, 0);
+	let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
+	let range = new vscode.Range(start, end);
+
+	let text = document.getText(range);
+	let lines = text.split('\n');
+
+	let newLines = lines.filter(line => {
+		return !(line.trim() === '**' || line.trim() === '');
+	});
+
+	let newText = newLines.join('\n');
+	editor.edit(editBuilder => {
+		editBuilder.replace(range, newText);
+	});
+}
+
+export function removeBlankLines() {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+	let document = editor.document;
+	let selection = editor.selection;
+
+	let start = new vscode.Position(0, 0);
+	let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
+	let range = new vscode.Range(start, end);
+
+	let text = document.getText(range);
+	let lines = text.split('\n');
+
+	let newLines = lines.filter(line => {
+		return !(line.trim() === '');
+	});
+
+	let newText = newLines.join('\n');
+	editor.edit(editBuilder => {
+		editBuilder.replace(range, newText);
+	});
+}

@@ -1,7 +1,7 @@
 // Imports
 import * as vscode from 'vscode';
 import { HoverProvider } from './HoverProvider';
-import { indentLines, removeLeadingSpaces, format, compact, removeAllComments, removeEmptyComments } from './Commands';
+import { indentLines, removeLeadingSpaces, format, compact, removeAllComments, removeEmptyComments, removeBlankLines } from './Commands';
 
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider
@@ -13,30 +13,32 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposableFormat = vscode.commands.registerCommand('extension.format', format);
 	const disposableCompact = vscode.commands.registerCommand('extension.compact', compact);
 	const disposableRemoveAllComments = vscode.commands.registerCommand('extension.removeAllComments', removeAllComments);
-	//const disposableRemoveEmptyComments = vscode.commands.registerCommand('extension.removeEmptyComments', removeEmptyComments);
+	const disposableRemoveEmptyComments = vscode.commands.registerCommand('extension.removeEmptyComments', removeEmptyComments);
+	const disposableRemoveBlankLines = vscode.commands.registerCommand('extension.removeBlankLines', removeBlankLines);
 
-	const disposableRemoveEmptyComments = vscode.commands.registerTextEditorCommand('extension.removeEmptyComments', (textEditor: vscode.TextEditor) => {
-		let document = textEditor.document;
-		let selection = textEditor.selection;
 
-		let start = new vscode.Position(0, 0);
-		let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
-		let range = new vscode.Range(start, end);
-
-		let text = document.getText(range);
-		let lines = text.split('\n');
-
-		let newLines = lines.filter(line => {
-			return !(line.trim() === '**' || line.trim() === '');
-		});
-
-		let newText = newLines.join('\n');
-		textEditor.edit(editBuilder => {
-			editBuilder.replace(range, newText);
-		});
-	});
+	/* 	let disposable = vscode.commands.registerTextEditorCommand('extension.removeEmptyComments', (textEditor: vscode.TextEditor) => {
+			let document = textEditor.document;
+			let selection = textEditor.selection;
+	
+			let start = new vscode.Position(0, 0);
+			let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
+			let range = new vscode.Range(start, end);
+	
+			let text = document.getText(range);
+			let lines = text.split('\n');
+	
+			let newLines = lines.filter(line => {
+				return !(line.trim() === '**' || line.trim() === '');
+			});
+	
+			let newText = newLines.join('\n');
+			textEditor.edit(editBuilder => {
+				editBuilder.replace(range, newText);
+			});
+		}); */
 
 	// Dispose
-	context.subscriptions.push(disposableHoverProvider, disposableIndentLines, disposableRemoveLeadingSpaces, disposableFormat, disposableCompact, disposableRemoveAllComments, disposableRemoveEmptyComments);
+	context.subscriptions.push(disposableHoverProvider, disposableIndentLines, disposableRemoveLeadingSpaces, disposableFormat, disposableCompact, disposableRemoveAllComments, disposableRemoveEmptyComments, disposableRemoveBlankLines);
 }
 export function deactivate() { }

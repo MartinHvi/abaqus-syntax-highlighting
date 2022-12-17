@@ -46,6 +46,10 @@
       {
         "command": "extension.removeEmptyComments",
         "title": "Abaqus: Remove empty comments"
+      },
+      {
+        "command": "extension.removeBlankLines",
+        "title": "Abaqus: Remove blank lines"
       }
     ],
     "configuration": {
