@@ -4,46 +4,15 @@
 // Imports
 import * as vscode from 'vscode';
 import { HoverProvider } from './HoverProvider';
-// Dynamic Import for custom hover settings
-const jsonPath: string = vscode.workspace.getConfiguration().get<string>('abaqusSyntaxHighlighting.customHover.pathJSON')!;
-const fs = require('fs');
-// Catch invalid oath to .json
-function readJSON(jsonPath) {
-	let data;
-	try {
-		data = JSON.parse(fs.readFileSync(jsonPath));
-	} catch (err) {
-		const data = {
-			default: 'default hover',
-		};
-		return data;
-	}
-	return JSON.parse(fs.readFileSync(jsonPath));
-}
-const hoverInfo = readJSON(jsonPath);
-
+import { indentLines } from './Commands';
 // HOVER VSCODE
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider
 	const disposableHoverProvider = new HoverProvider();
 	vscode.languages.registerHoverProvider('abaqus', disposableHoverProvider);
-	/* const disposableHoverProvider = vscode.languages.registerHoverProvider('abaqus', {
-		provideHover(document, position) {
-			// Get word range
-			//const wordRange = document.getWordRangeAtPosition(position, /^[*][A-Za-z\s]+/gm);
-			const wordRange = document.getWordRangeAtPosition(position, /[A-Za-z0-9\s*-_]+/gm);
-			// Get the word and turn it to lowercase in order to match the hoverInfo.json
-			const word = document.getText(wordRange).toLowerCase();
-			// The markdownstring returned from the hover
-			const content = new vscode.MarkdownString(hoverInfo[word]);
-			console.log(hoverInfo[word]);
-			return {
-				contents: [content]
-			};
-		}
-	}); */
-
-	const disposableIndentLines = vscode.commands.registerCommand('extension.indentLines', () => {
+	// Commands indent lines
+	const disposableIndentLines = vscode.commands.registerCommand('extension.indentLines', indentLines);
+	/* const disposableIndentLines = vscode.commands.registerCommand('extension.indentLines', () => {
 		// Get the current text editor
 		const editor = vscode.window.activeTextEditor;
 		if (!editor) {
@@ -60,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 		});
-	});
+	}); */
 
 	const disposableRemoveLeadingSpaces = vscode.commands.registerCommand('extension.removeLeadingSpaces', () => {
 		// Get the current text editor

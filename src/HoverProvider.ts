@@ -16,6 +16,8 @@ function readJSON(jsonPath) {
 	return JSON.parse(fs.readFileSync(jsonPath));
 }
 const hoverInfo = readJSON(jsonPath);
+
+
 export class HoverProvider implements vscode.HoverProvider {
 	provideHover(document, position) {
 		// Get word range
