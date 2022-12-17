@@ -1,7 +1,10 @@
+Unofficial VS Code extension for abaqus input files.
+***
 # Features
 - [x] Syntax highlighting
 - [x] Custom hover
-- [x] Commands accessible by the command palette using the short cut CTRL + SHIFT + P. Abaqus: Indent lines, Abaqus: Format, Abaqus: Compact and Abaqus: Remove leading spaces.
+- [x] Commands accessible by the command palette using "CTRL + SHIFT + P" and searching for: Abaqus: Indent lines, Abaqus: Format, Abaqus: Compact and Abaqus: Remove leading spaces.
+- [x] If the command "Abaqus: Indent lines" is used then all data lines can be folded using "CTRL + K + 0". To unfold use "CTRL + K + J".
 ***
 
 # Abaqus Syntax Highlighting VSCode

@@ -24,7 +24,7 @@ const hoverInfo = readJSON(jsonPath);
 // HOVER VSCODE
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider
-	const hoverProvider = vscode.languages.registerHoverProvider('abaqus', {
+	const disposableHoverProvider = vscode.languages.registerHoverProvider('abaqus', {
 		provideHover(document, position) {
 			// Get word range
 			//const wordRange = document.getWordRangeAtPosition(position, /^[*][A-Za-z\s]+/gm);
@@ -40,7 +40,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	const disposable_indentLines = vscode.commands.registerCommand('extension.indentLines', () => {
+	const disposableIndentLines = vscode.commands.registerCommand('extension.indentLines', () => {
+		// Get the current text editor
 		const editor = vscode.window.activeTextEditor;
 		if (!editor) {
 			return; // No open text editor
@@ -52,13 +53,13 @@ export function activate(context: vscode.ExtensionContext) {
 				const line = document.lineAt(i);
 				const lineText = line.text;
 				if (!lineText.startsWith('*') && !lineText.startsWith(' ')) {
-					editBuilder.insert(line.range.start, ' ');
+					editBuilder.insert(line.range.start, '  ');
 				}
 			}
 		});
 	});
 
-	const disposable_removeLeadingSpaces = vscode.commands.registerCommand('extension.removeLeadingSpaces', () => {
+	const disposableRemoveLeadingSpaces = vscode.commands.registerCommand('extension.removeLeadingSpaces', () => {
 		// Get the current text editor
 		let editor = vscode.window.activeTextEditor;
 		if (!editor) {
@@ -90,7 +91,7 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	});
 
-	const disposable_format = vscode.commands.registerCommand('extension.format', () => {
+	const disposableFormat = vscode.commands.registerCommand('extension.format', () => {
 		// Get the current text editor
 		let editor = vscode.window.activeTextEditor;
 
@@ -117,7 +118,8 @@ export function activate(context: vscode.ExtensionContext) {
 			editBuilder.replace(documentRange, modifiedText);
 		});
 	});
-	const disposable_compact = vscode.commands.registerCommand('extension.compact', () => {
+
+	const disposableCompact = vscode.commands.registerCommand('extension.compact', () => {
 		// Get the current text editor
 		let editor = vscode.window.activeTextEditor;
 
@@ -144,9 +146,8 @@ export function activate(context: vscode.ExtensionContext) {
 			editBuilder.replace(documentRange, modifiedText);
 		});
 	});
-	// Finally dispose
-	context.subscriptions.push(hoverProvider, disposable_indentLines, disposable_removeLeadingSpaces, disposable_format, disposable_compact);
+
+	// Dispose
+	context.subscriptions.push(disposableHoverProvider, disposableIndentLines, disposableRemoveLeadingSpaces, disposableFormat, disposableCompact);
 }
-
-
-//export function deactivate() { }
+export function deactivate() { }
