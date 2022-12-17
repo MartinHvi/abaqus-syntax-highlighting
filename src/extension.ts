@@ -3,6 +3,7 @@
  *--------------------------------------------------------*/
 // Imports
 import * as vscode from 'vscode';
+import { HoverProvider } from './HoverProvider';
 // Dynamic Import for custom hover settings
 const jsonPath: string = vscode.workspace.getConfiguration().get<string>('abaqusSyntaxHighlighting.customHover.pathJSON')!;
 const fs = require('fs');
@@ -24,7 +25,9 @@ const hoverInfo = readJSON(jsonPath);
 // HOVER VSCODE
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider
-	const disposableHoverProvider = vscode.languages.registerHoverProvider('abaqus', {
+	const disposableHoverProvider = new HoverProvider();
+	vscode.languages.registerHoverProvider('abaqus', disposableHoverProvider);
+	/* const disposableHoverProvider = vscode.languages.registerHoverProvider('abaqus', {
 		provideHover(document, position) {
 			// Get word range
 			//const wordRange = document.getWordRangeAtPosition(position, /^[*][A-Za-z\s]+/gm);
@@ -38,7 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
 				contents: [content]
 			};
 		}
-	});
+	}); */
 
 	const disposableIndentLines = vscode.commands.registerCommand('extension.indentLines', () => {
 		// Get the current text editor
