@@ -38,6 +38,14 @@
       {
         "command": "extension.compact",
         "title": "Abaqus: Compact"
+      },
+      {
+        "command": "extension.removeAllComments",
+        "title": "Abaqus: Remove all comments"
+      },
+      {
+        "command": "extension.removeEmptyComments",
+        "title": "Abaqus: Remove empty comments"
       }
     ],
     "configuration": {

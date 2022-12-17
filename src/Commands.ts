@@ -107,3 +107,32 @@ export function compact() {
 		editBuilder.replace(documentRange, modifiedText);
 	});
 }
+export function removeAllComments() {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+
+	const document = editor.document;
+	const selection = editor.selection;
+
+	// Get the range of lines that should be removed
+	const startLine = 0;
+	const endLine = document.lineCount - 1;
+	const lineRange = new vscode.Range(startLine, 0, endLine, 0);
+
+	// Get the text of the lines that should be removed
+	const text = document.getText(lineRange);
+
+	// Split the text into lines and filter out the lines starting with **
+	const lines = text.split('\n').filter((line) => !line.startsWith('**'));
+
+	// Replace the original text with the filtered text
+	editor.edit((editBuilder) => {
+		editBuilder.replace(lineRange, lines.join('\n'));
+	});
+}
+
+/* function removeEmptyComments() {
+	
+} */
