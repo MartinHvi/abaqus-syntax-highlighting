@@ -1,6 +1,7 @@
 # Features
 - [x] Syntax highlighting
 - [x] Custom hover
+- [x] Commands accessible by the command palette using the short cut CTRL + SHIFT + P. Abaqus: Indent lines, Abaqus: Format, Abaqus: Compact and Abaqus: Remove leading spaces.
 ***
 
 # Abaqus Syntax Highlighting VSCode

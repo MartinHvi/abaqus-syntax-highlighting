@@ -18,7 +18,8 @@
   "activationEvents": [
     "onLanguage:abaqus",
     "onCommand:extension.indentLines",
-    "onCommand:extension.removeLeadingSpaces"
+    "onCommand:extension.removeLeadingSpaces",
+    "onCommand:extension.compact"
   ],
   "contributes": {
     "commands": [
@@ -33,6 +34,10 @@
       {
         "command": "extension.format",
         "title": "Abaqus: Format"
+      },
+      {
+        "command": "extension.compact",
+        "title": "Abaqus: Compact"
       }
     ],
     "configuration": {
