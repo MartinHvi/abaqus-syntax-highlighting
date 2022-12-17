@@ -16,9 +16,25 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onLanguage:abaqus"
+    "onLanguage:abaqus",
+    "onCommand:extension.indentLines",
+    "onCommand:extension.removeLeadingSpaces"
   ],
   "contributes": {
+    "commands": [
+      {
+        "command": "extension.indentLines",
+        "title": "Abaqus: Indent lines"
+      },
+      {
+        "command": "extension.removeLeadingSpaces",
+        "title": "Abaqus: Remove leading spaces"
+      },
+      {
+        "command": "extension.format",
+        "title": "Abaqus: Format"
+      }
+    ],
     "configuration": {
       "title": "Abaqus Syntax Highlighting",
       "properties": {
