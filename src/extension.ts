@@ -1,7 +1,7 @@
 // Imports
 import * as vscode from 'vscode';
 import { HoverProvider } from './HoverProvider';
-import { indentLines, removeLeadingSpaces, format, compact, removeAllComments, removeEmptyComments, removeBlankLines } from './Commands';
+import { indentLines, removeLeadingSpaces, format, compact, removeAllComments, removeEmptyComments, removeBlankLines, toUppercase } from './Commands';
 
 export function activate(context: vscode.ExtensionContext) {
 	// hoverProvider
@@ -15,7 +15,9 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposableRemoveAllComments = vscode.commands.registerCommand('extension.removeAllComments', removeAllComments);
 	const disposableRemoveEmptyComments = vscode.commands.registerCommand('extension.removeEmptyComments', removeEmptyComments);
 	const disposableRemoveBlankLines = vscode.commands.registerCommand('extension.removeBlankLines', removeBlankLines);
+	const disposableToUppercase = vscode.commands.registerCommand('extension.toUppercase', toUppercase);
+
 	// Dispose
-	context.subscriptions.push(disposableHoverProvider, disposableIndentLines, disposableRemoveLeadingSpaces, disposableFormat, disposableCompact, disposableRemoveAllComments, disposableRemoveEmptyComments, disposableRemoveBlankLines);
+	context.subscriptions.push(disposableHoverProvider, disposableIndentLines, disposableRemoveLeadingSpaces, disposableFormat, disposableCompact, disposableRemoveAllComments, disposableRemoveEmptyComments, disposableRemoveBlankLines, disposableToUppercase);
 }
 export function deactivate() { }

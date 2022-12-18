@@ -182,3 +182,23 @@ export function removeBlankLines() {
 		editBuilder.replace(range, newText);
 	});
 }
+
+export function toUppercase() {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+	let document = editor.document;
+	let selection = editor.selection;
+
+	let start = new vscode.Position(0, 0);
+	let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
+	let range = new vscode.Range(start, end);
+
+	let text = document.getText(range);
+	let newText = text.toUpperCase();
+
+	editor.edit(editBuilder => {
+		editBuilder.replace(range, newText);
+	});
+}

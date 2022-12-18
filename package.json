@@ -50,6 +50,10 @@
       {
         "command": "extension.removeBlankLines",
         "title": "Abaqus: Remove blank lines"
+      },
+      {
+        "command": "extension.toUppercase",
+        "title": "Abaqus: Uppercase"
       }
     ],
     "configuration": {
