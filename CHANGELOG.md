@@ -1,5 +1,5 @@
 # Change Log
-## [2.1.0] (2022-12-18)
+## [2.1.0] (2022-12-19)
 Added commands accessible by the command palette using the short cut CTRL + SHIFT + P.
 ## [2.0.1] (2022-11-26)
 Added logo.
