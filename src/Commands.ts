@@ -33,7 +33,7 @@ export function removeLeadingSpaces() {
 	// Split the document into lines
 	let lines = documentText.split('\n');
 	// Initialize an array for the modified lines
-	let modifiedLines = [];
+	let modifiedLines: string[] = [];
 	// Iterate over the lines
 	for (let i = 0; i < lines.length; i++) {
 		if (lines[i][0] !== '*') {
@@ -66,7 +66,7 @@ export function format() {
 	// Split the document into lines
 	let lines = documentText.split('\n');
 	// Initialize an array for the modified lines
-	let modifiedLines = [];
+	let modifiedLines: string[] = [];
 	// Iterate over the lines
 	for (let i = 0; i < lines.length; i++) {
 		// Remove spaces after commas and add a single space after all commas
@@ -94,7 +94,7 @@ export function compact() {
 	// Split the document into lines
 	let lines = documentText.split('\n');
 	// Initialize an array for the modified lines
-	let modifiedLines = [];
+	let modifiedLines: string[] = [];
 	// Iterate over the lines
 	for (let i = 0; i < lines.length; i++) {
 		// Remove spaces after commas and add a single space after all commas
@@ -114,7 +114,6 @@ export function removeAllComments() {
 	}
 
 	const document = editor.document;
-	const selection = editor.selection;
 
 	// Get the range of lines that should be removed
 	const startLine = 0;
@@ -139,7 +138,6 @@ export function removeEmptyComments() {
 		return;
 	}
 	let document = editor.document;
-	let selection = editor.selection;
 
 	let start = new vscode.Position(0, 0);
 	let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
@@ -164,7 +162,6 @@ export function removeBlankLines() {
 		return;
 	}
 	let document = editor.document;
-	let selection = editor.selection;
 
 	let start = new vscode.Position(0, 0);
 	let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
@@ -189,7 +186,6 @@ export function toUppercase() {
 		return;
 	}
 	let document = editor.document;
-	let selection = editor.selection;
 
 	let start = new vscode.Position(0, 0);
 	let end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
