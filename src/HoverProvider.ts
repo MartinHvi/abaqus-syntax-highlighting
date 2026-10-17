@@ -20,10 +20,10 @@ function readJSON(jsonPath: string): HoverInfo {
   } catch {
     // Handle error without using the error object
     data = {
-      'default': 'test1',
+      default: 'test1',
       'this is a default': 'test2',
       'this is a default-test': 'test3',
-      'this is a default-test case': 'test4'
+      'this is a default-test case': 'test4',
     };
   }
   return data;
@@ -54,7 +54,7 @@ export class HoverProvider implements vscode.HoverProvider {
     );
 
     // Remove console.log statement
-    // console.log(hoverInfo[word]); 
+    // console.log(hoverInfo[word]);
 
     return {
       contents: [content],
