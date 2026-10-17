@@ -106,9 +106,6 @@ export function computeFoldingRanges(lines: LineSource): FoldRange[] {
       // Mutually matched `*END X` — already inside its wrapper fold.
       continue;
     }
-    if (isWrapperCloser(name)) {
-      // Unmatched `*END X`: treated as an ordinary keyword line below.
-    }
 
     const cls = keywordClass(name);
     if (cls === 'container') {
@@ -127,6 +124,8 @@ export function computeFoldingRanges(lines: LineSource): FoldRange[] {
     }
 
     // Ordinary keyword: the keyword line plus its contiguous data-line run.
+    // An unmatched `*END X` (no open wrapper of its name, or wrapper already
+    // closed) also lands here, treated as an ordinary keyword line.
     // Blank lines stay in the run; the next keyword line, comment line or EOF
     // ends it.
     let j = i + 1;

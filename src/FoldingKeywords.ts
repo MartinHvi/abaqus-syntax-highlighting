@@ -111,7 +111,3 @@ export function isChildOf(child: string, container: string): boolean {
   const children = containerChildren[container];
   return children !== undefined && children.indexOf(child) !== -1;
 }
-
-export function childrenOf(container: string): readonly string[] {
-  return containerChildren[container] ?? [];
-}
