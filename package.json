@@ -4,7 +4,7 @@
   "description": "Custom hover information, syntax highlighting for input files",
   "icon": "images/logo128.png",
   "publisher": "MartinHviid",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "engines": {
     "vscode": "^1.61.0"
   },

@@ -7,7 +7,8 @@ Unofficial VS Code extension for abaqus input file support.
 - [x] Syntax highlighting
 - [x] Custom hover
 - [x] Commands accessible by the command palette using "CTRL + SHIFT + P" and searching for: Abaqus: Indent lines, Abaqus: Format, Abaqus: Compact, Abaqus: Remove leading spaces, Abaqus: Remove all comment, Abaqus: Remove empty comments, Abaqus: Remove blank lines, Abaqus: Uppercase.
-- [x] If the command "Abaqus: Indent lines" is used then all data lines can be folded using "CTRL + K + 0". To unfold use "CTRL + K + J".
+- [x] Code folding
+- [x] Native folding of keyword blocks, driven by the file's keyword structure: keywords that wrap their contents (*STEP, *PART, *ASSEMBLY, *INSTANCE, *LOAD CASE) fold up to and including their matching *END line, container keywords such as *MATERIAL or *SURFACE INTERACTION fold over their contents, and every other keyword folds over its data lines. Folds nest and work out of the box — no command or setting needed. ("Abaqus: Indent lines" is no longer required for folding; the command itself is unchanged.)
 
 ---
 

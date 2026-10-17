@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.3.0] (2026-10-17)
+
+Added native code folding for Abaqus keyword blocks. Folding is derived from the file's keyword structure — *STEP, *PART, *ASSEMBLY, *INSTANCE and *LOAD CASE fold to their matching *END line, container keywords like *MATERIAL fold over their contents, and every other keyword folds over its data lines — so no command or setting is needed.
+
 ## [2.2.1] (2024-09-07)
 
 Fix regex for hover provider.
