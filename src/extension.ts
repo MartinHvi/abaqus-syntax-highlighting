@@ -1,6 +1,7 @@
 // Imports
 import * as vscode from 'vscode';
 import { HoverProvider } from './HoverProvider';
+import { FoldingProvider } from './FoldingProvider';
 import {
   indentLines,
   removeLeadingSpaces,
@@ -19,6 +20,10 @@ export function activate(context: vscode.ExtensionContext) {
     'abaqus',
     hoverProvider,
   );
+  // foldingProvider
+  const foldingProvider = new FoldingProvider();
+  const disposableFoldingProvider =
+    vscode.languages.registerFoldingRangeProvider('abaqus', foldingProvider);
   // Commands
   const disposableIndentLines = vscode.commands.registerCommand(
     'extension.indentLines',
@@ -56,6 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
   // Dispose
   context.subscriptions.push(
     disposableHoverProvider,
+    disposableFoldingProvider,
     disposableIndentLines,
     disposableRemoveLeadingSpaces,
     disposableFormat,
