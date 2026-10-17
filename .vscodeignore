@@ -9,3 +9,5 @@ images/**
 node_modules
 .github
 .eslintrc.json
+src/test/**
+out/test/**

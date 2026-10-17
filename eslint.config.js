@@ -34,6 +34,15 @@ const config = [
     },
     ignores: ['node_modules/**'],
   },
+  {
+    // Test harness and its compiled output: the runner prints its results,
+    // there is no logger in a plain node:assert harness. Placed after the
+    // global rules block, which would otherwise re-enable no-console.
+    files: ['src/test/**/*.ts', 'out/test/**/*.js'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
 ];
 
 module.exports = config;
