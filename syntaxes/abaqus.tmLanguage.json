@@ -3,128 +3,204 @@
   "name": "Abaqus",
   "patterns": [
     {
-      "include": "#headertext"
+      "include": "#comment-line"
     },
     {
-      "include": "#comments"
+      "include": "#heading-block"
     },
     {
-      "include": "#keywords"
+      "include": "#parameter-block"
     },
     {
-      "include": "#variables"
+      "include": "#keyword-line"
     },
     {
-      "include": "#variablesSpaces"
-    },
-    {
-      "include": "#parametric"
-    },
-    {
-      "include": "#numerical"
-    },
-    {
-      "include": "#variableValue"
-    },
-    {
-      "include": "#otherVariableValue"
-    },
-    {
-      "include": "#operator"
+      "include": "#fields"
     }
   ],
   "repository": {
-    "comments": {
+    "comment-line": {
+      "comment": "Comment line: ** in columns 1–2; the rest of the line is arbitrary text, including further * (deepdive §6.1). One token so nothing inside can bleed.",
+      "match": "^\\*\\*.*",
+      "name": "comment.line.abaqus"
+    },
+    "heading-block": {
+      "comment": "Job title: the data lines after *HEADING are free text (deepdive §4 catalog). Block ends at the next keyword line; comment lines inside stay comments. No sub-patterns for the body — title lines read as one free-text scope.",
+      "name": "string.unquoted.abaqus",
+      "begin": "^[ \\t]*(\\*)[ \\t]*([Hh][Ee][Aa][Dd][Ii][Nn][Gg])(?![A-Za-z0-9])",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.keyword.abaqus"
+        },
+        "2": {
+          "name": "keyword.control.abaqus"
+        }
+      },
+      "end": "(?=^[ \\t]*\\*[ \\t]*(?:[A-Za-z]|,|$))",
       "patterns": [
         {
-          "comment": "Comment line",
-          "begin": "^[*][*]",
-          "end": "(?=\\n)",
-          "name": "comment.line.abaqus"
+          "include": "#comment-line"
         }
       ]
     },
-    "headertext": {
+    "parameter-block": {
+      "comment": "*PARAMETER block: the one block-aware exception (spec) — its data lines are Python: # comments, \\ continuations, case-sensitive names, no D exponents (deepdive §6.3). Started by *PARAMETER but not *PARAMETER DEPENDENCE, which is a distinct keyword and resumes the normal rules.",
+      "begin": "^[ \\t]*(\\*)[ \\t]*([Pp][Aa][Rr][Aa][Mm][Ee][Tt][Ee][Rr])(?![A-Za-z0-9])(?![ \\t]*[Dd][Ee][Pp][Ee][Nn][Dd][Ee][Nn][Cc][Ee])",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.keyword.abaqus"
+        },
+        "2": {
+          "name": "keyword.control.abaqus"
+        }
+      },
+      "end": "(?=^[ \\t]*\\*[ \\t]*(?:[A-Za-z]|,|$))",
       "patterns": [
         {
-          "comment": "Header text",
-          "name": "string.quoted.docstring.multi.abaqus",
-          "begin": "(?<=HEADING)",
-          "end": "(?=\\*)"
+          "include": "#comment-line"
+        },
+        {
+          "comment": "Python line comment.",
+          "match": "#.*",
+          "name": "comment.line.number-sign.python"
+        },
+        {
+          "comment": "Python continuation: the \\\\ is the last character of the line.",
+          "match": "\\\\$",
+          "name": "punctuation.separator.continuation.line.python"
+        },
+        {
+          "comment": "Python builtins usable in parameter expressions.",
+          "match": "(?<!\\w)(?:sqrt|int|abs|min|max|floor|ceil|sin|cos|tan|asin|acos|atan|atan2|exp|log|log10|pow)(?=\\s*\\()",
+          "name": "support.function.builtin.python"
+        },
+        {
+          "comment": "Python numbers: E exponent only, D is rejected here (abaqus-inp-format §5).",
+          "match": "(?<![\\w.\\-])[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:[eE][+-]?\\d+)?",
+          "name": "constant.numeric.python"
+        },
+        {
+          "comment": "Python arithmetic operators (** before * so it stays one token).",
+          "match": "\\*\\*|[*/+%-]",
+          "name": "keyword.operator.arithmetic.python"
+        },
+        {
+          "comment": "Python assignment = (distinct from literals).",
+          "match": "=",
+          "name": "keyword.operator.assignment.python"
+        },
+        {
+          "comment": "Python identifier: case-sensitive parameter names, anywhere in an assignment or expression.",
+          "match": "[A-Za-z_][A-Za-z0-9_]*",
+          "name": "variable.other.readwrite.python"
         }
       ]
     },
-    "numerical": {
+    "keyword-line": {
+      "comment": "Keyword line: first non-blank character is *, the keyword may be abbreviated (unique-prefix rule — never validated), and blanks are ignored, so `* SURFACE INTER ACTION` and `*SURFACEINTERACTION` all read as keywords (format doc §1; deepdive §1.5). Empty keyword lines (`*`) are legal (deepdive §6.3). Every rule resets at the line boundary: `end` matches zero-width before the line terminator because VS Code hands each line to the grammar terminator-free.",
+      "begin": "^[ \\t]*(\\*)[ \\t]*(?:([A-Za-z][A-Za-z0-9-]*(?:[ \\t-]+[A-Za-z0-9-]+)*))?(?=[ \\t]*(?:,|$))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.keyword.abaqus"
+        },
+        "2": {
+          "name": "keyword.control.abaqus"
+        }
+      },
+      "end": "(?=$)",
       "patterns": [
         {
-          "comment": "Numerical values",
-          "name": "constant.numeric.abaqus",
-          "match": "([+-]?(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*))(?:[eE]([+-]?\\d+))?"
+          "include": "#bare-flag"
+        },
+        {
+          "include": "#fields"
         }
       ]
     },
-    "keywords": {
-      "patterns": [
-        {
-          "comment": "Abaqus keywords",
-          "name": "keyword.control.abaqus",
-          "begin": "^[*]",
-          "end": "(?=\\,|\\n)"
+    "bare-flag": {
+      "comment": "Bare flag (no =value): *STEP, NLGEOM; *SURFACE, MAX RATIO (deepdive §1.3). Fires only on keyword lines, after a comma, ending at the next comma or line end — so data-line word selectors (START, EDGE) stay plain field tokens.",
+      "match": "(,)[ \\t]*([A-Za-z][A-Za-z0-9-]*(?:[ \\t]+[A-Za-z0-9-]+)*)(?=[ \\t]*(?:,|$))",
+      "captures": {
+        "1": {
+          "name": "punctuation.separator.abaqus"
+        },
+        "2": {
+          "name": "variable.parameter.abaqus"
         }
-      ]
+      }
     },
-    "parametric": {
+    "fields": {
+      "comment": "Everything that can appear on a data line, a keyword-line continuation, or after a keyword name on the keyword line. Order matters: parametric and quoted first, then the file-name exemption before, the dotted-label error, then plain numbers, commas, and labels.",
       "patterns": [
         {
-          "comment": "Parametric variables",
-          "name": "entity.name.function.abaqus",
-          "begin": "(?=<)",
-          "end": "(>)"
-        }
-      ]
-    },
-    "variables": {
-      "patterns": [
+          "comment": "Parametric placeholder <width> — legitimate on data lines and in keyword-parameter values (PARAM; deepdive §6.3). Only the name inside is scoped; brackets stay plain.",
+          "match": "<([^>\\n]*)>",
+          "captures": {
+            "1": {
+              "name": "variable.other.abaqus"
+            }
+          }
+        },
         {
-          "comment": "Variables",
-          "name": "entity.name.variable.abaqus",
-          "match": "\\w+(?==)"
-        }
-      ]
-    },
-    "variablesSpaces": {
-      "patterns": [
+          "comment": "Quoted label: preserves blanks and case, may contain * and spaces (ELSET=\"One element\", \"ONE*ELEM\"). An unterminated quote is scoped to the end of its line only.",
+          "name": "string.quoted.double.abaqus",
+          "begin": "\"",
+          "end": "\"|(?=$)",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.abaqus"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.abaqus"
+            }
+          }
+        },
         {
-          "comment": "Space separate variables",
-          "name": "entity.name.variable.abaqus",
-          "match": "(?<=,|\\s)[a-zA-Z]+\\s+[a-zA-Z]+(?=\\=)"
-        }
-      ]
-    },
-    "variableValue": {
-      "patterns": [
+          "comment": "File-name parameter value (INPUT=, FILE=): file names may legitimately contain dots (part2.inp), which the unquoted-label error below would otherwise flag (deepdive §1.2, §6.1).",
+          "match": "(?<![A-Za-z0-9_])([Ii][Nn][Pp][Uu][Tt]|[Ff][Ii][Ll][Ee])[ \\t]*(=)[ \\t]*([^,\\n]*)",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.abaqus"
+            },
+            "2": {
+              "name": "keyword.operator.assignment.abaqus"
+            },
+            "3": {
+              "name": "string.unquoted.abaqus"
+            }
+          }
+        },
         {
-          "comment": "Variable values",
-          "name": "constant.language.abaqus",
-          "match": "(?<==)[^,*\\n]+(?<=)"
-        }
-      ]
-    },
-    "otherVariableValue": {
-      "patterns": [
+          "comment": "Value-bearing parameter name before =: single- or multi-word (DEPENDENCIES, EL SET); blanks around = ignored (deepdive §1.2).",
+          "match": "(?<![A-Za-z0-9_])[A-Za-z][A-Za-z0-9-]*(?:[ \\t]+[A-Za-z0-9-]+)*(?=[ \\t]*=)",
+          "name": "variable.parameter.abaqus"
+        },
         {
-          "comment": "Other variable values",
-          "name": "constant.language.abaqus",
-          "match": "(?<=|\\s,)[A-Za-z0-9-_]+(?=,|\\s)"
-        }
-      ]
-    },
-    "operator": {
-      "patterns": [
+          "comment": "Assignment = (blanks around it ignored, so `TYPE = ISOTROPIC` parses).",
+          "match": "[ \\t]*=[ \\t]*",
+          "name": "keyword.operator.assignment.abaqus"
+        },
         {
-          "comment": "Operators such as =",
-          "name": "keyword.operator.abaqus",
-          "match": "(\\=)"
+          "comment": "Number: optional sign, `.5` and `1.` forms, E or D exponent (all four spellings of the deepdive §2.3 example). The guard keeps digits inside labels (Part-5-1) from tokenizing as numbers.",
+          "match": "(?<![\\w.\\-])[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:[DeE][+-]?\\d+)?",
+          "name": "constant.numeric.abaqus"
+        },
+        {
+          "comment": "Unquoted label containing a dot — the one hard label error (format doc §5; deepdive §6.1). File-name values are exempt via the rule above.",
+          "match": "(?<![\\w.\\-])[A-Za-z][A-Za-z0-9_-]*\\.[A-Za-z0-9._\\-]*",
+          "name": "invalid.illegal.abaqus"
+        },
+        {
+          "comment": "Comma separators, including empty fields (`,,` means default; CAE decks emit them — format doc §5).",
+          "match": "[ \\t]*,[ \\t]*",
+          "name": "punctuation.separator.abaqus"
+        },
+        {
+          "comment": "Unquoted label or word selector: letters first, then digits/hyphens/underscores stay inside one token (Part-5-1, ObservationPoint, START, EDGE — deepdive §6.2's word-as-field pattern must not look like an error).",
+          "match": "(?<![A-Za-z0-9_-])[A-Za-z_][A-Za-z0-9_-]*",
+          "name": "string.unquoted.abaqus"
         }
       ]
     }
