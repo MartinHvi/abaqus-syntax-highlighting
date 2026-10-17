@@ -1,0 +1,24 @@
+# Dependabot keeps npm packages and GitHub Actions up to date.
+# Monthly schedule; minor and patch updates are grouped into one PR per
+# ecosystem to keep noise low. Major updates get their own PR each.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
